@@ -2,8 +2,7 @@
 import { Command, CommandError } from '@dephub/command';
 import { logger } from '@dephub/logger';
 
-import { loadEnv } from './core/env.js';
-import { description, name, version } from './utils/pkg.js';
+import { loadEnv } from './core/env.ts';
 
 const shellQuote = (value: string): string =>
   `'${String(value).replace(/'/g, `'\\''`)}'`; // safe for sh/bash/zsh/fish
@@ -29,9 +28,9 @@ const validateShell = (shell: string): string => {
 };
 
 const cmd = new Command()
-  .name(name.split('/')[1] ?? 'env')
-  .version(version)
-  .description(description)
+  .name(__PKG_NAME__.split('/')[1])
+  .description(__PKG_DESCRIPTION__)
+  .version(__PKG_VERSION__)
   .option('--project', {
     description: 'Path to the directory containing the .env file',
     optional: true,

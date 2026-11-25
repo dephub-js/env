@@ -1,13 +1,12 @@
+import { logger } from '@dephub/logger';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
-import { logger } from '@dephub/logger';
-
 export interface EnvResult {
-  /** Parsed environment variables */
-  variables: Record<string, string>;
   /** Whether the .env file was found and loaded */
   loaded: boolean;
+  /** Parsed environment variables */
+  variables: Record<string, string>;
 }
 
 /**
